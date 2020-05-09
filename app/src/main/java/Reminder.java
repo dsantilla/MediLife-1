@@ -38,23 +38,4 @@ public abstract class Reminder
     public String[] getList()
     { return recommendedList; }
 
-    public void addToList(String task)
-    {
-        if(listLength == recommendedList.length)
-        {
-            recommendedList = lengthenList(recommendedList);
-        }
-        recommendedList[listLength] = task;
-        listLength++;
-    }
-
-    public String[] lengthenList(String[] oldList)
-    {
-        String[] newList = new String[oldList.length * 2];
-        for (int i = 0; i < oldList.length; i++)
-        {
-            newList[i] = oldList[i];
-        }
-        return newList;
-    }
 }
