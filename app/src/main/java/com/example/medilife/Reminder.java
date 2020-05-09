@@ -1,3 +1,5 @@
+package com.example.medilife;
+
 public abstract class Reminder
 {
 
