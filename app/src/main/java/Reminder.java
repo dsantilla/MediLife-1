@@ -1,10 +1,9 @@
 public abstract class Reminder
 {
-
-    private boolean status = false;
+    private boolean onScreen = false;
+    private boolean completed = false;
     private String task;
     private float time;
-    private String[] recommendedList = new String[5];
     private int listLength = 0;
 
     public Reminder()
@@ -23,8 +22,11 @@ public abstract class Reminder
     public void setTime(float timeToDo)
     {  time = timeToDo; }
 
-    public void setStatus(boolean completed)
-    { status = completed; }
+    public void setCompleted(boolean status)
+    { completed = status; }
+
+    public void setOnScreen(boolean status)
+    { onScreen = status; }
 
     public String getTask()
     {  return task;    }
@@ -32,10 +34,12 @@ public abstract class Reminder
     public float getTime()
     { return time; }
 
-    public boolean getStatus()
-    { return status; }
+    public boolean getOnScreen()
+    {  return onScreen;    }
 
-    public String[] getList()
-    { return recommendedList; }
+    public boolean getCompleted()
+    { return completed; }
+
+    public abstract String[] getList();
 
 }
