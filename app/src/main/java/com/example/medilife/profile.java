@@ -1,3 +1,5 @@
+package com.example.medilife;
+
 /**
  * profile.java
  * A profile class written for the MediLife app 'profile' screen
