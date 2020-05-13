@@ -1,23 +1,60 @@
 package com.example.medilife;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * profile.java
  * A profile class written for the MediLife app 'profile' screen
  * Written By Nicolas Stefanelli
  */
 
-public class profile
+public class profile implements Parcelable
 {
 	String name; 
-	int age = 0;
-	int weight = 0;
-	int height = 0;
-	double BMI = 0;
+	int age;
+	int weight;
+	int height;
+	double BMI;
 	String bmiType = "normal";
 	int level = 1;
 	int experience = 0;
 	int experience_needed = 1000;
 	int streak = 0;
+
+	public profile()
+	{
+		name = "name";
+		age = 0;
+		weight = 0;
+		height = 0;
+	}
+
+	protected profile(Parcel in) {
+		name = in.readString();
+		age = in.readInt();
+		weight = in.readInt();
+		height = in.readInt();
+		BMI = in.readDouble();
+		bmiType = in.readString();
+		level = in.readInt();
+		experience = in.readInt();
+		experience_needed = in.readInt();
+		streak = in.readInt();
+	}
+
+	public static final Creator<profile> CREATOR = new Creator<profile>() {
+		@Override
+		public profile createFromParcel(Parcel in) {
+			return new profile(in);
+		}
+
+		@Override
+		public profile[] newArray(int size) {
+			return new profile[size];
+		}
+	};
+
 	public String getName()
 	{
 		return name;
@@ -97,7 +134,30 @@ public class profile
 	{
 		streak = 0;
 	}
-	
+
+	public String displayLevel()
+	{
+		return ("Level: " + level + " " + experience + "/" + experience_needed);
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(name);
+		dest.writeInt(age);
+		dest.writeInt(weight);
+		dest.writeInt(height);
+		dest.writeDouble(BMI);
+		dest.writeString(bmiType);
+		dest.writeInt(level);
+		dest.writeInt(experience);
+		dest.writeInt(experience_needed);
+		dest.writeInt(streak);
+	}
 }
 
 
