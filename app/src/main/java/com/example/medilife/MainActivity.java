@@ -10,12 +10,11 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+     profile myProfile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final profile myProfile = new profile();
-
         Button toReminderBtn = (Button) findViewById(R.id.goToReminder);
         toReminderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,4 +38,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

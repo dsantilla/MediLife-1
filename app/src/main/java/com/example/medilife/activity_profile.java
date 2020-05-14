@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class activity_profile extends AppCompatActivity {
@@ -15,19 +17,46 @@ public class activity_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Intent intent = getIntent();
-        profile myProfile = intent.getParcelableExtra("userProfile");
-
+        TextView BMI = (TextView) findViewById(R.id.textView_BMI);
         TextView level = (TextView) findViewById(R.id.levelView);
-        level.setText(myProfile.displayLevel());
+        final EditText name = (EditText) findViewById(R.id.editText_name);
+        final EditText age = (EditText) findViewById(R.id.editText_age);
+        final EditText height = (EditText) findViewById(R.id.editText_height);
+        final EditText weight = (EditText) findViewById(R.id.editText_weight);
+
+        level.setText(profile.getInstance().displayLevel());
+        BMI.setText(profile.getInstance().calculateBMI());
+        name.setText(profile.getInstance().getName());
+        age.setText(Integer.toString(profile.getInstance().getAge()));
+        height.setText(Double.toString(profile.getInstance().getHeight()));
+        weight.setText(Double.toString(profile.getInstance().getWeight()));
 
         Button backBtn = (Button) findViewById(R.id.homeButtonProfile);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startIntentReminder = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(startIntentReminder);
-            }
+                    String message = name.getText().toString();
+                    profile.getInstance().setName(message);
+
+                    message = age.getText().toString();
+                    int num = Integer.parseInt(message);
+                    profile.getInstance().setAge(num);
+
+                message = height.getText().toString();
+                double dub = Double.parseDouble(message);
+                profile.getInstance().setHeight(dub);
+
+                message = weight.getText().toString();
+                dub = Double.parseDouble(message);
+                profile.getInstance().setWeight(dub);
+
+                    Intent startIntentReminder = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(startIntentReminder);
+                    }
+
+
+
+
         });
     }
 }

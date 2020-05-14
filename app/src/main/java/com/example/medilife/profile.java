@@ -2,6 +2,7 @@ package com.example.medilife;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.Editable;
 
 /**
  * profile.java
@@ -9,12 +10,14 @@ import android.os.Parcelable;
  * Written By Nicolas Stefanelli
  */
 
-public class profile implements Parcelable
+public class profile
 {
-	String name; 
+	private static final profile PROFILE = new profile();
+
+	String name;
 	int age;
-	int weight;
-	int height;
+	double weight;
+	double height;
 	double BMI;
 	String bmiType = "normal";
 	int level = 1;
@@ -22,7 +25,7 @@ public class profile implements Parcelable
 	int experience_needed = 1000;
 	int streak = 0;
 
-	public profile()
+	private profile()
 	{
 		name = "name";
 		age = 0;
@@ -30,30 +33,11 @@ public class profile implements Parcelable
 		height = 0;
 	}
 
-	protected profile(Parcel in) {
-		name = in.readString();
-		age = in.readInt();
-		weight = in.readInt();
-		height = in.readInt();
-		BMI = in.readDouble();
-		bmiType = in.readString();
-		level = in.readInt();
-		experience = in.readInt();
-		experience_needed = in.readInt();
-		streak = in.readInt();
+	public static profile getInstance()
+	{
+		return PROFILE;
 	}
 
-	public static final Creator<profile> CREATOR = new Creator<profile>() {
-		@Override
-		public profile createFromParcel(Parcel in) {
-			return new profile(in);
-		}
-
-		@Override
-		public profile[] newArray(int size) {
-			return new profile[size];
-		}
-	};
 
 	public String getName()
 	{
@@ -63,23 +47,24 @@ public class profile implements Parcelable
 	{
 		name = n;
 	}
-	public int getWeight()
+	public int getAge() {return age;}
+	public void setAge(int a){age = a;}
+	public double getWeight()
 	{
 		return weight;
 	}
-	public void setWeight(int w)
+	public void setWeight(double w)
 	{
 		weight = w;
-		updateBMI();
 	}
-	public int getHeight()
+	public double getHeight()
 	{
 		return height;
 	}
-	public void setHeight(int h)
+	public void setHeight(double h)
 	{
 		height = h;
-		updateBMI();
+
 	}
 	public int getLevel()
 	{
@@ -107,7 +92,7 @@ public class profile implements Parcelable
 		setExperienceNeeded(newExp);
 	}	
 	
-	public void updateBMI()
+	public String calculateBMI()
 	{
 		double meters = height * 0.0254;
 		double kg =  weight * 0.453592;
@@ -119,6 +104,9 @@ public class profile implements Parcelable
 			bmiType = "normal";
 		else
 			bmiType = "underweight";
+
+		String temp = "Your BMI is: " + Math.round(BMI * 100) / 100 + ".\nThis is " + bmiType + ". ";
+		return temp;
 			
 	}
 	
@@ -140,24 +128,6 @@ public class profile implements Parcelable
 		return ("Level: " + level + " " + experience + "/" + experience_needed);
 	}
 
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(name);
-		dest.writeInt(age);
-		dest.writeInt(weight);
-		dest.writeInt(height);
-		dest.writeDouble(BMI);
-		dest.writeString(bmiType);
-		dest.writeInt(level);
-		dest.writeInt(experience);
-		dest.writeInt(experience_needed);
-		dest.writeInt(streak);
-	}
 }
 
 
