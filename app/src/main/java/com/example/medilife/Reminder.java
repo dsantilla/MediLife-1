@@ -7,19 +7,34 @@ public abstract class Reminder
     private String task;
     private int hr;
     private int min;
+    private String timeType;
     private int listLength = 0;
 
     public Reminder()
     {
         task = "";
-        hr = 0;
+        hr = 12;
         min = 0;
+        timeType = "AM";
     }
-    public Reminder(String toDo,  int hour, int minute)
+    public Reminder(String toDo,  int hour, int minute, String tt)
     {
         task = toDo;
-        hr = hour % 24;
-        min = minute % 60;
+        if (hour <= 12 && hour >= 1)
+        {
+            hr = hour;
+        }
+
+        if(minute <= 60 && minute >= 1)
+        {
+            min = minute % 60;
+        }
+
+        if(tt.equalsIgnoreCase("am") || tt.equalsIgnoreCase("pm"))
+        {
+            timeType = tt.toUpperCase();
+        }
+
     }
     public void setTask(String toDo)
     {  task = toDo; }
@@ -52,5 +67,16 @@ public abstract class Reminder
     { return completed; }
 
     public abstract String[] getList();
+
+    public String toString()
+    {
+        String temp;
+        if(min < 10)
+            temp = (task + " by " + hr + ":" + "0" + min + " " + timeType);
+        else
+            temp = (task + " by " + hr + ":" + min + " " + timeType);
+
+        return temp;
+    }
 
 }
