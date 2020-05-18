@@ -9,9 +9,9 @@ public class ExerciseReminder extends Reminder
     {
         super();
     }
-    public ExerciseReminder(String toDo,  int hour, int minute,String timeT)
+    public ExerciseReminder(String toDo,  int hour, int minute)
     {
-        super(toDo, hour, minute,timeT);
+        super(toDo, hour, minute);
     }
 
     public String[] getList()

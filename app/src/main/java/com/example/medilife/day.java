@@ -3,14 +3,18 @@ package com.example.medilife;
 import java.util.*;
 
 public class day {
-    private static final ArrayList<Reminder> reminders = new ArrayList<Reminder>();
-    private day() {}
+    private ArrayList<Reminder> reminders = new ArrayList<Reminder>();
+    public day() {}
+    private ArrayList<Reminder> incompleteReminders = new ArrayList<Reminder>();
 
-    private static final day DAY = new day();
-
-    public static day getInstance() {return DAY;}
-    public static ArrayList<Reminder> getList(){return DAY.reminders;}
+    public ArrayList<Reminder> getList(){return reminders;}
+    public ArrayList<Reminder> getIncompleteList(){return incompleteReminders;}
+    public void addIncompleteReminder(Reminder newReminder)
+    {
+        incompleteReminders.add(newReminder);
+    }
     public void addReminder(Reminder newReminder) {
+        // adds reminders in order of time to the list
         int[] newTime;
         int[] currentTime;
         newTime = newReminder.getTime();

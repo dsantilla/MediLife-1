@@ -7,9 +7,9 @@ public class CustomReminder extends Reminder {
     {
         super();
     }
-    public CustomReminder(String toDo,  int hour, int minute,String timeT)
+    public CustomReminder(String toDo,  int hour, int minute)
     {
-        super(toDo, hour, minute,timeT);
+        super(toDo, hour, minute);
     }
 
     public String[] getList()

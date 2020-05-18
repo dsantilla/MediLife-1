@@ -8,9 +8,9 @@ public class HygieneReminder extends Reminder {
     {
         super();
     }
-    public HygieneReminder(String toDo,  int hour, int minute,String timeT)
+    public HygieneReminder(String toDo,  int hour, int minute)
     {
-        super(toDo, hour, minute,timeT);
+        super(toDo, hour, minute);
     }
 
     public String[] getList()
