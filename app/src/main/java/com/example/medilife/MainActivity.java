@@ -1,5 +1,7 @@
 package com.example.medilife;
 
+import java.util.*;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,6 +20,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // new code adding in TimerTest logic
+        ArrayList<day> DaysOfTheWeek = new ArrayList<>(); // ArrayList of 7 Day objects for the week. 0 index is monday.
+        for (int i = 0; i < 7; i++)
+        {
+            day temp = day.getInstance();
+            DaysOfTheWeek.add(temp);
+        }
+
         ListView list = (ListView) findViewById(R.id.theList);
         HygieneReminder remindTest = new HygieneReminder("brush teeth",8,1,"AM");
         day.getInstance().addReminder(remindTest);
@@ -32,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(startIntentReminder);
             }
         });
-
-
-
 
         Button toProfileBtn = (Button)findViewById(R.id.goToProfile);
         toProfileBtn.setOnClickListener(new View.OnClickListener() {
