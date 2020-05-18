@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_add_reminder">
+
+    <Spinner
+        android:id="@+id/typeSpinner"
+        android:layout_width="145dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="186dp" />
+
+    <Spinner
+        android:id="@+id/suggestionSpinner"
+        android:layout_width="372dp"
+        android:layout_height="67dp"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="312dp" />
+
+    <EditText
+        android:id="@+id/editText4"
+        android:layout_width="373dp"
+        android:layout_height="88dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="           Type Reminder Message Here"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="449dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="216dp"
+        android:layout_height="51dp"
+        android:text="Reminder Type"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="186dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="243dp"
+        android:layout_height="48dp"
+        android:text="Suggested Tasks"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="255dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="146dp"
+        android:layout_height="44dp"
+        android:text="New Task"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="394dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="147dp"
+        android:layout_height="70dp"
+        android:text="Create Reminder"
+        tools:layout_editor_absoluteX="240dp"
+        tools:layout_editor_absoluteY="633dp" />
+
+    <EditText
+        android:id="@+id/editText8"
+        android:layout_width="79dp"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Hour"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="567dp" />
+
+    <EditText
+        android:id="@+id/editText9"
+        android:layout_width="184dp"
+        android:layout_height="59dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="    Minute"
+        android:textSize="30sp"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="567dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
