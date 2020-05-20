@@ -128,6 +128,11 @@ public class profile
 		return ("Level: " + level + " " + experience + "/" + experience_needed);
 	}
 
+	public String displayLevelMain()
+	{
+		return ("Level: " + level + "\n" + experience + "/" + experience_needed);
+	}
+
 }
 
 
