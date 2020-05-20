@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 public class activity_reminder extends AppCompatActivity {
 
@@ -16,6 +18,10 @@ public class activity_reminder extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
 
+        TextView dayDisplay = (TextView) findViewById(R.id.dayView);
+        String[] days = {"Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        dayDisplay.setText(days[dataLayer.getDay()]);
+
         final ListView list = (ListView) findViewById(R.id.reminderView);
         ArrayAdapter reminders = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
                 dataLayer.getList().get(dataLayer.getDay()).getListReminders());
@@ -23,6 +29,11 @@ public class activity_reminder extends AppCompatActivity {
         reminders.setNotifyOnChange(true);
         list.setAdapter(reminders);
 
+        Spinner typeSpinner = (Spinner) findViewById(R.id.taskSpinner);
+        ArrayAdapter tasksToComplete = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
+                dataLayer.getList().get(dataLayer.getDay()).getListReminders());
+        tasksToComplete.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        typeSpinner.setAdapter(tasksToComplete);
 
         Button backBtn = (Button) findViewById(R.id.homeButtonReminder);
         backBtn.setOnClickListener(new View.OnClickListener() {
