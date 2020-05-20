@@ -1,6 +1,8 @@
 package com.example.medilife;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.widget.Spinner;
 import android.os.Bundle;
 import android.widget.AdapterView;
@@ -24,9 +26,7 @@ public class activity_add_reminder extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
 
-        final EditText editTaskBox = (EditText) findViewById(R.id.editTask);
-        final EditText editHourBox = (EditText) findViewById(R.id.editTask);
-        final EditText editMinuteBox = (EditText) findViewById(R.id.editTask);
+
 
         String[] reminder_types = {"Hygiene", "Exercise", "Custom"};
         hygiene_suggestions = new String[]{"Brush teeth", "Floss teeth", "Take a shower", "Apply Deodorant", "Do skin routine"};
@@ -76,9 +76,17 @@ public class activity_add_reminder extends AppCompatActivity{
         addReminderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditText editTaskBox = (EditText) findViewById(R.id.editTask);
+                EditText editHourBox = (EditText) findViewById(R.id.editHour);
+                EditText editMinuteBox = (EditText) findViewById(R.id.editMinute);
                 String task = editTaskBox.getText().toString();
                 int hr = Integer.parseInt(editHourBox.getText().toString());
                 int min = Integer.parseInt(editMinuteBox.getText().toString());
+
+                CustomReminder newReminder = new CustomReminder(task, hr, min);
+                dataLayer.getList().get(dataLayer.getDay()).addReminder(newReminder);
+                Intent startIntentReminder = new Intent(getApplicationContext(), activity_reminder.class);
+                startActivity(startIntentReminder);
             }
         });
     }
