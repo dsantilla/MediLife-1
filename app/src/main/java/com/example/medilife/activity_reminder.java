@@ -62,7 +62,7 @@ public class activity_reminder extends AppCompatActivity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataLayer.getList().get(dataLayer.getDay()).removeReminder(task);
+                dataLayer.getList().get(dataLayer.getDay()).completeReminder(task);
             }
         });
 

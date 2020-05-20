@@ -79,8 +79,19 @@ public class day {
         if(index != -1) {
             this.reminders.remove(index);
         }
-        else{
-            System.out.println("Reminder doesn't exist.");
+    }
+
+    public void completeReminder(String task)
+    {
+        int index = -1;
+        for(int i = 0; i < this.reminders.size(); i++) {
+            if(this.reminders.get(i).getTask() == task) {
+                index = i;
+                break;
+            }
+        }
+        if(index != -1) {
+            this.reminders.get(index).setCompleted(true);
         }
     }
 
