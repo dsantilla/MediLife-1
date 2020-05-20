@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 public class activity_reminder extends AppCompatActivity {
 
+    String task;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +31,23 @@ public class activity_reminder extends AppCompatActivity {
         reminders.setNotifyOnChange(true);
         list.setAdapter(reminders);
 
-        Spinner typeSpinner = (Spinner) findViewById(R.id.taskSpinner);
+        Spinner taskSpinner = (Spinner) findViewById(R.id.taskSpinner);
         ArrayAdapter tasksToComplete = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
                 dataLayer.getList().get(dataLayer.getDay()).getListReminders());
         tasksToComplete.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        typeSpinner.setAdapter(tasksToComplete);
+        taskSpinner.setAdapter(tasksToComplete);
+
+        taskSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // On selecting a spinner item
+                task = parent.getItemAtPosition(position).toString();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         Button backBtn = (Button) findViewById(R.id.homeButtonReminder);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +55,14 @@ public class activity_reminder extends AppCompatActivity {
             public void onClick(View v) {
                 Intent startIntentReminder = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(startIntentReminder);
+            }
+        });
+
+        Button completeButton= (Button) findViewById(R.id.taskButton);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dataLayer.getList().get(dataLayer.getDay()).removeReminder(task);
             }
         });
 
