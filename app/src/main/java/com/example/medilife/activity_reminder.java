@@ -22,5 +22,14 @@ public class activity_reminder extends AppCompatActivity {
                 startActivity(startIntentReminder);
             }
         });
+
+        Button addReminderBtn = (Button) findViewById(R.id.goToAddReminder);
+        addReminderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startIntentAdd = new Intent(activity_reminder.this,activity_add_reminder.class);
+                startActivity(startIntentAdd);
+            }
+        });
     }
 }
