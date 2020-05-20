@@ -7,8 +7,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.view.View;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Button;
+import android.widget.EditText;
 
-public class activity_add_reminder extends AppCompatActivity implements OnItemSelectedListener{
+public class activity_add_reminder extends AppCompatActivity{
 
     private String[] hygiene_suggestions;
     private String[] exercise_suggestions;
@@ -21,6 +23,10 @@ public class activity_add_reminder extends AppCompatActivity implements OnItemSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
+
+        final EditText editTaskBox = (EditText) findViewById(R.id.editTask);
+        final EditText editHourBox = (EditText) findViewById(R.id.editTask);
+        final EditText editMinuteBox = (EditText) findViewById(R.id.editTask);
 
         String[] reminder_types = {"Hygiene", "Exercise", "Custom"};
         hygiene_suggestions = new String[]{"Brush teeth", "Floss teeth", "Take a shower", "Apply Deodorant", "Do skin routine"};
@@ -41,27 +47,41 @@ public class activity_add_reminder extends AppCompatActivity implements OnItemSe
 
         Spinner suggestionSpinner = (Spinner) findViewById(R.id.suggestionSpinner);
         suggestionSpinner.setAdapter(hygieneAdapter);
+        typeSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // On selecting a spinner item
+                String item = parent.getItemAtPosition(position).toString();
+                Spinner tempSpinner = (Spinner) findViewById(R.id.suggestionSpinner);
+                if(item.equals("Hygiene"))
+                {
+                    tempSpinner.setAdapter(hygieneAdapter);
+                }
+                else if(item.equals("Exercise"))
+                {
+                    tempSpinner.setAdapter(exerciseAdapter);
+                }
+                else if(item.equals("Custom"))
+                {
+                    tempSpinner.setAdapter((customAdapter));
+                }
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Button addReminderBtn = (Button) findViewById(R.id.createButton);
+        addReminderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String task = editTaskBox.getText().toString();
+                int hr = Integer.parseInt(editHourBox.getText().toString());
+                int min = Integer.parseInt(editMinuteBox.getText().toString());
+            }
+        });
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-        Spinner tempSpinner = (Spinner) findViewById(R.id.typeSpinner);
-        if(item.equals("Hygiene"))
-        {
-            tempSpinner.setAdapter(hygieneAdapter);
-        }
-        else if(item.equals("Exercise"))
-        {
-            tempSpinner.setAdapter(exerciseAdapter);
-        }
-        else if(item.equals("Custom"))
-        {
-            tempSpinner.setAdapter((customAdapter));
-        }
-    }
 
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }
