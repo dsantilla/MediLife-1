@@ -28,14 +28,15 @@ public class MainActivity extends AppCompatActivity {
         final TextView level = (TextView) findViewById(R.id.levelViewMain);
         level.setText(profile.getInstance().displayLevelMain());
 
+        Calendar tempCal = Calendar.getInstance();
+        dataLayer.changeDay(  tempCal.get(tempCal.get(Calendar.DAY_OF_WEEK) - 1)  ); // update day in data layer
 
-        // ArrayList of 7 Day objects for the week. 1 index is monday.
-
+        day tempCurrentDay = dataLayer.getList().get(tempCal.get(Calendar.DAY_OF_WEEK) - 1); // grabs current day from the list of days
 
         final ListView list = (ListView) findViewById(R.id.theList);
-        Calendar tempCal = Calendar.getInstance();
-        day tempCurrentDay = dataLayer.getList().get(tempCal.get(Calendar.DAY_OF_WEEK) - 1); // grabs current day from the list of days
-        ArrayAdapter<Reminder> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,tempCurrentDay.getIncompleteList());
+        ArrayAdapter<Reminder> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
+                tempCurrentDay.getIncompleteList());
+        //This retrieves the list of reminders from a specific day stored in the dataLayer arrayList.
         adapter.setNotifyOnChange(true);
         list.setAdapter(adapter);
 
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-        timeCheck.schedule(tt, 0, 1000 * 10); // run tt every second.
+        timeCheck.schedule(tt, 0, 1000 * 1); // run tt every second.
 
 
         Button toReminderBtn = (Button) findViewById(R.id.goToReminder);
@@ -107,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 
 
 }
