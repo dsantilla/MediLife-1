@@ -79,6 +79,16 @@ public class day {
         if(index != -1) {
             this.reminders.remove(index);
         }
+        index = -1;
+        for(int i = 0; i < this.incompleteReminders.size(); i++) {
+            if(this.incompleteReminders.get(i).getTask() == task) {
+                index = i;
+                break;
+            }
+        }
+        if(index != -1) {
+            this.incompleteReminders.remove(index);
+        }
     }
 
     public void completeReminder(String task)

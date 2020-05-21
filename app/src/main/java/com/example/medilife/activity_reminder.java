@@ -67,7 +67,7 @@ public class activity_reminder extends AppCompatActivity {
                 profile.getInstance().addExperience(100);
                 Intent newRemindIntent = new Intent(activity_reminder.this,activity_reminder.class);
                 startActivity(newRemindIntent);
-                overridePendingTransition(0, 0);
+                //overridePendingTransition(0, 0);
             }
         });
 
