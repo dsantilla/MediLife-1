@@ -67,6 +67,7 @@ public class day {
     public ArrayList<Reminder> getListReminders() {
         return this.reminders;
     }
+    public int getListSize() {return reminders.size(); }
 
     public void removeReminder(String task) {
         int index = -1;

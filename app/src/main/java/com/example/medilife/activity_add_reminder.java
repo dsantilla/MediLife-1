@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class activity_add_reminder extends AppCompatActivity{
 
@@ -26,7 +27,8 @@ public class activity_add_reminder extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_reminder);
 
-
+        final TextView tasks = (TextView) findViewById(R.id.unfinished2);
+        tasks.setText(Integer.toString(dataLayer.getList().get(dataLayer.getDay()).getListSize()));
 
         String[] reminder_types = {"Hygiene", "Exercise", "Custom"};
         hygiene_suggestions = new String[]{"Brush teeth", "Floss teeth", "Take a shower", "Apply Deodorant", "Do skin routine"};

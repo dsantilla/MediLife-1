@@ -40,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.setNotifyOnChange(true);
         list.setAdapter(adapter);
 
-
         int curDay = tempCal.get(Calendar.DAY_OF_WEEK) - 1; // 1 is monday, 7 is sunday. subtracted 1 for correct list indexing
         dataLayer.changeDay(curDay);
+        final TextView tasks = (TextView) findViewById(R.id.unfinished);
+        tasks.setText(Integer.toString(dataLayer.getList().get(curDay).getListSize()));
 
         Timer timeCheck = new Timer();
         TimerTask tt = new TimerTask() {

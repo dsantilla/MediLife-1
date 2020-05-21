@@ -24,6 +24,9 @@ public class activity_reminder extends AppCompatActivity {
         String[] days = {"Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
         dayDisplay.setText(days[dataLayer.getDay()]);
 
+        final TextView tasks = (TextView) findViewById(R.id.unfinished4);
+        tasks.setText(Integer.toString(dataLayer.getList().get(dataLayer.getDay()).getListSize()));
+
         final ListView list = (ListView) findViewById(R.id.reminderView);
         ArrayAdapter reminders = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,
                 dataLayer.getList().get(dataLayer.getDay()).getListReminders());

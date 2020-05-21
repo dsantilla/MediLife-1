@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 public class activity_profile extends AppCompatActivity {
 
     @Override
@@ -23,6 +25,11 @@ public class activity_profile extends AppCompatActivity {
         final EditText age = (EditText) findViewById(R.id.editText_age);
         final EditText height = (EditText) findViewById(R.id.editText_height);
         final EditText weight = (EditText) findViewById(R.id.editText_weight);
+
+        Calendar tempCal = Calendar.getInstance();
+        int curDay = tempCal.get(Calendar.DAY_OF_WEEK) - 1; // 1 is monday, 7 is sunday. subtracted 1 for correct list indexing
+        final TextView tasks = (TextView) findViewById(R.id.unfinished3);
+        tasks.setText(Integer.toString(dataLayer.getList().get(curDay).getListSize()));
 
         level.setText(profile.getInstance().displayLevel());
         BMI.setText(profile.getInstance().calculateBMI());
