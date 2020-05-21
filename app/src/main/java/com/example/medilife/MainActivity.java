@@ -78,9 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     } else if (currentHour > reminderHour) // didn't output reminder at correct earlier hour
                     {
-                        if (currentMinute == reminderMinute || currentMinute > reminderMinute) //correct minute or passed the correct minute
-                        {
-                            if (!currentReminder.getCompleted() && !currentReminder.getOnScreen()) //not completed, not on screen yet
+                        if (!currentReminder.getCompleted() && !currentReminder.getOnScreen()) //not completed, not on screen yet
                             {
                                 //System.out.println(currentReminder.getTask());
                                 dataLayer.getList().get(currentDay).addIncompleteReminder(currentReminder);
@@ -88,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                                 Intent refreshMainIntent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(refreshMainIntent);
                             }
-                        }
                     }
                 }
             }
