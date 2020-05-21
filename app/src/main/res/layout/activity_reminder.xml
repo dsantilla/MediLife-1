@@ -12,13 +12,14 @@
         android:layout_width="104dp"
         android:layout_height="70dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Complete Task"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
+        app:layout_constraintHorizontal_bias="0.026"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskSpinner"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.015" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -72,8 +73,8 @@
         android:id="@+id/dayView"
         android:layout_width="194dp"
         android:layout_height="64dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="112dp"
+        android:layout_marginLeft="112dp"
         android:layout_marginTop="132dp"
         android:text="dayView"
         android:textSize="30sp"
@@ -84,9 +85,35 @@
         android:id="@+id/taskSpinner"
         android:layout_width="385dp"
         android:layout_height="35dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.384"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reminderView" />
+
+    <Button
+        android:id="@+id/previousButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="20dp"
+        android:text="Previous"
+        app:layout_constraintBottom_toTopOf="@+id/reminderView"
+        app:layout_constraintEnd_toStartOf="@+id/dayView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="20dp"
+        android:text="Next"
+        app:layout_constraintBottom_toTopOf="@+id/reminderView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/dayView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

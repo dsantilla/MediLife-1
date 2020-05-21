@@ -79,6 +79,43 @@ public class activity_reminder extends AppCompatActivity {
                 startActivity(startIntentAdd);
             }
         });
+
+        Button prevButton= (Button) findViewById(R.id.previousButton);
+        prevButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tempDay = dataLayer.getDay();
+                if(tempDay > 0)
+                {
+                    dataLayer.changeDay(tempDay -1);
+                }
+                else
+                {
+                    dataLayer.changeDay(6);
+                }
+                Intent newRemindIntent = new Intent(activity_reminder.this,activity_reminder.class);
+                startActivity(newRemindIntent);
+                overridePendingTransition(0, 0);
+            }
+        });
+        Button nextButton= (Button) findViewById(R.id.nextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tempDay = dataLayer.getDay();
+                if(tempDay < 6)
+                {
+                    dataLayer.changeDay(tempDay + 1);
+                }
+                else
+                {
+                    dataLayer.changeDay(0);
+                }
+                Intent newRemindIntent = new Intent(activity_reminder.this,activity_reminder.class);
+                startActivity(newRemindIntent);
+                overridePendingTransition(0, 0);
+            }
+        });
     }
 
 }
