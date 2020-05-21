@@ -82,16 +82,23 @@ public class profile
 	{
 		experience_needed = e;
 	}
-	 public void incrementLevel()
+
+	public void incrementLevel()
 	{
 		int lev = getLevel();
 		lev++;
 		setLevel(lev);
-		int oldExperience = getExperienceNeeded();
-		int newExp = 2 * oldExperience;
+		int newExp = 2 * getExperienceNeeded();
 		setExperienceNeeded(newExp);
 	}	
-	
+
+	public void addExperience(int xp)
+	{
+		experience += xp;
+		if(experience >= experience_needed)
+			incrementLevel();
+	}
+
 	public String calculateBMI()
 	{
 		double meters = height * 0.0254;

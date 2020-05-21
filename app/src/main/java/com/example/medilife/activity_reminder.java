@@ -59,10 +59,15 @@ public class activity_reminder extends AppCompatActivity {
         });
 
         Button completeButton= (Button) findViewById(R.id.taskButton);
-        backBtn.setOnClickListener(new View.OnClickListener() {
+        completeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dataLayer.getList().get(dataLayer.getDay()).completeReminder(task);
+                dataLayer.getList().get(dataLayer.getDay()).removeReminder(task);
+                profile.getInstance().addExperience(100);
+                Intent newRemindIntent = new Intent(activity_reminder.this,activity_reminder.class);
+                startActivity(newRemindIntent);
+                overridePendingTransition(0, 0);
             }
         });
 
